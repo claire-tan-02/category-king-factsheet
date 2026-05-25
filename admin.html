@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS — Category King Factsheet</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Poppins', sans-serif; background: #f2f5fc; color: #080f2e; min-height: 100vh; }
+
+    .cms-header {
+      background: #1a2a49; color: #fff;
+      padding: 16px 28px;
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 16px rgba(26,42,73,.45);
+    }
+    .cms-header h1 { font-size: 1.1rem; font-weight: 700; color: #fadd82; }
+    .cms-header h1 span { color: rgba(250,221,130,.6); font-weight: 400; font-size: .9rem; margin-left: 6px; }
+    .header-actions { display: flex; gap: 8px; align-items: center; }
+
+    .btn { border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: .82rem; font-weight: 600; cursor: pointer; padding: 8px 18px; transition: all .15s; border: none; }
+    .btn-ghost { background: transparent; color: #fadd82; border: 2px solid #fadd82; }
+    .btn-ghost:hover { background: #fadd82; color: #1a2a49; }
+    .btn-primary { background: #fadd82; color: #1a2a49; }
+    .btn-primary:hover { background: #ffe9a0; }
+    .btn-primary:disabled { background: #c8b860; cursor: not-allowed; opacity: .6; }
+    .btn-link { background: transparent; color: rgba(250,221,130,.7); border: 2px solid rgba(250,221,130,.4); font-size: .8rem; padding: 7px 14px; text-decoration: none; display: inline-flex; align-items: center; }
+    .btn-link:hover { background: rgba(250,221,130,.15); color: #fadd82; border-color: #fadd82; }
+
+    #status {
+      padding: 11px 28px; font-size: .83rem; font-weight: 500; display: none;
+      border-bottom: 1px solid transparent;
+    }
+    #status.ok  { background: #d4edda; color: #155724; display: block; }
+    #status.ok a { color: #155724; }
+    #status.err { background: #f8d7da; color: #721c24; display: block; }
+    #status.loading { background: #fff8ec; color: #856404; display: block; }
+
+    .cms-main { max-width: 840px; margin: 28px auto 80px; padding: 0 18px; }
+
+    .cms-section {
+      background: #fff; border-radius: 16px; padding: 26px 28px; margin-bottom: 20px;
+      box-shadow: 0 2px 12px rgba(26,42,73,.07);
+    }
+    .cms-section h2 {
+      font-size: .95rem; font-weight: 700; color: #1a2a49;
+      margin-bottom: 20px; padding-bottom: 12px;
+      border-bottom: 2px solid #eef4ff;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .cms-section h2 .h2-action { font-size: .78rem; font-weight: 600; }
+
+    .field { margin-bottom: 14px; }
+    .field:last-child { margin-bottom: 0; }
+    .field label {
+      display: block; font-size: .72rem; font-weight: 600; color: #5a6a9a;
+      text-transform: uppercase; letter-spacing: .5px; margin-bottom: 5px;
+    }
+    .field input, .field textarea {
+      width: 100%; border: 2px solid #b8d0f8; border-radius: 8px;
+      padding: 9px 12px; font-family: 'Poppins', sans-serif; font-size: .86rem;
+      color: #080f2e; background: #f8faff; transition: border-color .15s; outline: none;
+    }
+    .field input:focus, .field textarea:focus { border-color: #1a2a49; background: #fff; }
+    .field textarea { resize: vertical; min-height: 72px; }
+    .field .hint { font-size: .7rem; color: #8a9ac0; margin-top: 4px; line-height: 1.5; }
+
+    .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width:600px) { .row2 { grid-template-columns: 1fr; } }
+
+    .btn-add-full {
+      display: block; width: 100%; background: none; border: 2px dashed #fadd82;
+      color: #c0aa00; border-radius: 10px; padding: 10px;
+      font-family: 'Poppins', sans-serif; font-size: .83rem; font-weight: 600;
+      cursor: pointer; transition: all .15s; margin-top: 8px; text-align: center;
+    }
+    .btn-add-full:hover { background: #fffce0; }
+
+    /* Dynamic cards */
+    .dyn-card {
+      background: #f8faff; border: 2px solid #b8d0f8; border-radius: 12px;
+      padding: 18px; margin-bottom: 10px;
+    }
+    .dyn-card-head {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 14px;
+    }
+    .dyn-card-label { font-size: .72rem; font-weight: 700; color: #c0aa00; text-transform: uppercase; letter-spacing: 1px; }
+    .btn-remove {
+      background: none; border: none; color: #d07070; font-size: 1rem;
+      cursor: pointer; padding: 2px 7px; border-radius: 6px; transition: background .15s;
+    }
+    .btn-remove:hover { background: #fde8e8; }
+
+    /* Token */
+    .token-wrap { display: flex; gap: 8px; }
+    .token-wrap input { flex: 1; }
+    .btn-show {
+      background: #eef4ff; border: 2px solid #b8d0f8; color: #5a6a9a;
+      padding: 0 12px; border-radius: 8px; font-family: 'Poppins', sans-serif;
+      font-size: .78rem; font-weight: 600; cursor: pointer; white-space: nowrap;
+    }
+    .btn-show:hover { background: #d4e4f8; }
+
+    .bottom-save { text-align: center; margin-top: 28px; }
+    .bottom-save button {
+      background: #fadd82; color: #1a2a49; border: none;
+      padding: 16px 52px; border-radius: 50px; font-family: 'Poppins', sans-serif;
+      font-size: 1rem; font-weight: 700; cursor: pointer;
+      box-shadow: 0 4px 18px rgba(250,221,130,.45); transition: all .15s;
+    }
+    .bottom-save button:hover { background: #ffe9a0; transform: translateY(-1px); }
+
+    .spinner {
+      display: inline-block; width: 13px; height: 13px;
+      border: 2px solid rgba(0,0,0,.15); border-top-color: #856404;
+      border-radius: 50%; animation: spin .7s linear infinite;
+      vertical-align: middle; margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .note-box {
+      background: #fffce0; border: 1.5px solid #fadd82; border-radius: 10px;
+      padding: 12px 16px; font-size: .78rem; color: #7a6800; line-height: 1.7;
+      margin-top: 6px;
+    }
+    .note-box strong { font-weight: 700; }
+
+    /* Section icon accent */
+    .cms-section h2::before {
+      content: ''; display: inline-block;
+      width: 4px; height: 18px; background: #fadd82;
+      border-radius: 2px; margin-right: 10px; flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+
+<header class="cms-header">
+  <h1>🏆 Category King CMS <span>— Event Factsheet</span></h1>
+  <div class="header-actions">
+    <a href="https://category-king-factsheet.vercel.app" target="_blank" class="btn btn-link">👁 Preview</a>
+    <button class="btn btn-ghost" onclick="loadConfig()">📥 Load</button>
+    <button class="btn btn-primary" id="btn-save" onclick="saveConfig()">🚀 Save &amp; Publish</button>
+  </div>
+</header>
+
+<div id="status"></div>
+
+<main class="cms-main">
+
+  <!-- ── GitHub Token ──────────────────────────────── -->
+  <div class="cms-section">
+    <h2>🔑 GitHub Access Token</h2>
+    <div class="field">
+      <label>Personal Access Token (saved locally in this browser)</label>
+      <div class="token-wrap">
+        <input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+        <button class="btn-show" onclick="toggleToken()">Show</button>
+      </div>
+    </div>
+    <div class="note-box">
+      <strong>First time setup:</strong> Go to <strong>GitHub → Settings → Developer Settings → Personal access tokens → Fine-grained tokens</strong>.<br>
+      Create a new token → select repository <em>category-king-factsheet</em> → set <strong>Contents: Read and Write</strong> → Generate token.<br>
+      Paste the token above, then click <strong>📥 Load</strong> to get started.
+    </div>
+  </div>
+
+  <!-- ── Event Info ──────────────────────────────── -->
+  <div class="cms-section">
+    <h2>📋 Event Info</h2>
+    <div class="row2">
+      <div class="field">
+        <label>Dates</label>
+        <input type="text" id="ev-dates" placeholder="11 – 13 June 2026">
+      </div>
+      <div class="field">
+        <label>Countdown Target (ISO datetime)</label>
+        <input type="text" id="ev-countdown" placeholder="2026-06-10T23:59:00+08:00">
+        <p class="hint">Format: YYYY-MM-DDTHH:MM:SS+08:00</p>
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Days (Chinese 星期几)</label>
+        <input type="text" id="ev-days-zh" placeholder="星期三至星期五">
+      </div>
+      <div class="field">
+        <label>Days (English)</label>
+        <input type="text" id="ev-days-en" placeholder="Wednesday to Friday">
+      </div>
+    </div>
+    <div class="row2">
+      <div class="field">
+        <label>Registration Time</label>
+        <input type="text" id="ev-time-reg" placeholder="8:00 AM">
+      </div>
+      <div class="field">
+        <label>Event Time</label>
+        <input type="text" id="ev-time-event" placeholder="9:00 AM – 10:00 PM">
+      </div>
+    </div>
+    <div class="field">
+      <label>Tagline (Chinese)</label>
+      <input type="text" id="ev-tagline-zh" placeholder="以你的生活发展你的企业...">
+    </div>
+    <div class="field">
+      <label>Tagline (English)</label>
+      <input type="text" id="ev-tagline-en" placeholder="Grow your business around your life...">
+    </div>
+  </div>
+
+  <!-- ── Homework Links ─────────────────────────── -->
+  <div class="cms-section">
+    <h2>📚 Homework Links</h2>
+    <div class="field">
+      <label>Homework Item 1 — Onboarding Form URL</label>
+      <input type="url" id="lk-hw1" placeholder="https://categoryking.asia/ck-jun26-onboarding-form">
+    </div>
+    <div class="field">
+      <label>Homework Item 3 — PDF Guide URL</label>
+      <input type="url" id="lk-hw3" placeholder="https://drive.google.com/file/d/...">
+    </div>
+  </div>
+
+  <!-- ── FAQ ──────────────────────────────────────── -->
+  <div class="cms-section">
+    <h2>❓ FAQ <span class="h2-action" style="font-size:.78rem;font-weight:400;color:#8a9ac0;">Bilingual Q&amp;A cards</span></h2>
+    <div id="faq-list"></div>
+    <button class="btn-add-full" onclick="addFaq()">+ Add Question</button>
+  </div>
+
+  <!-- ── Links ────────────────────────────────────── -->
+  <div class="cms-section">
+    <h2>🔗 Footer Button Links</h2>
+    <div class="field">
+      <label>Join WhatsApp Group URL</label>
+      <input type="url" id="lk-join" placeholder="https://chat.whatsapp.com/...">
+    </div>
+    <div class="field">
+      <label>Contact Us URL (WhatsApp or link)</label>
+      <input type="url" id="lk-contact" placeholder="https://api.whatsapp.com/send/?phone=60...">
+    </div>
+  </div>
+
+  <div class="bottom-save">
+    <button onclick="saveConfig()">🚀 Save &amp; Publish to Vercel</button>
+  </div>
+
+</main>
+
+<script>
+  /* ── Config ──────────────────────────────────────── */
+  const REPO_OWNER  = 'claire-tan-02';
+  const REPO_NAME   = 'category-king-factsheet';
+  const REPO_BRANCH = 'master';
+  const CONFIG_PATH = 'ck-config.json';
+  const API_BASE    = 'https://api.github.com';
+  const LIVE_URL    = 'https://category-king-factsheet.vercel.app';
+
+  let currentSha = null;
+
+  /* ── Init ────────────────────────────────────────── */
+  window.addEventListener('DOMContentLoaded', function() {
+    var saved = localStorage.getItem('ck-cms-token');
+    if (saved) document.getElementById('gh-token').value = saved;
+    renderFaqList([]);
+  });
+
+  /* ── Token toggle ────────────────────────────────── */
+  function toggleToken() {
+    var inp = document.getElementById('gh-token');
+    var btn = document.querySelector('.btn-show');
+    if (inp.type === 'password') { inp.type = 'text'; btn.textContent = 'Hide'; }
+    else { inp.type = 'password'; btn.textContent = 'Show'; }
+  }
+
+  /* ── Status ──────────────────────────────────────── */
+  function showStatus(msg, type) {
+    var el = document.getElementById('status');
+    el.className = type;
+    el.innerHTML = msg;
+    el.style.display = 'block';
+  }
+
+  /* ── GitHub helpers ──────────────────────────────── */
+  function getToken() { return document.getElementById('gh-token').value.trim(); }
+
+  async function ghGet(path) {
+    var token = getToken();
+    if (!token) throw new Error('No token provided');
+    var res = await fetch(API_BASE + path, {
+      headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github.v3+json' }
+    });
+    if (!res.ok) {
+      var err = await res.json().catch(function() { return {}; });
+      throw new Error(err.message || res.statusText);
+    }
+    return res.json();
+  }
+
+  async function ghPut(path, body) {
+    var token = getToken();
+    if (!token) throw new Error('No token provided');
+    var res = await fetch(API_BASE + path, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/vnd.github.v3+json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+    if (!res.ok) {
+      var err = await res.json().catch(function() { return {}; });
+      throw new Error(err.message || res.statusText);
+    }
+    return res.json();
+  }
+
+  function b64Encode(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function b64Decode(b64) { return decodeURIComponent(escape(atob(b64.replace(/\s/g, '')))); }
+
+  /* ── Load ────────────────────────────────────────── */
+  async function loadConfig() {
+    var token = getToken();
+    if (!token) { showStatus('⚠️ Please enter your GitHub token first, then click Load.', 'err'); return; }
+    localStorage.setItem('ck-cms-token', token);
+    showStatus('<span class="spinner"></span> Loading config from GitHub…', 'loading');
+    try {
+      var data = await ghGet('/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/' + CONFIG_PATH + '?ref=' + REPO_BRANCH);
+      currentSha = data.sha;
+      var config = JSON.parse(b64Decode(data.content));
+      populateForms(config);
+      showStatus('✅ Config loaded! Make your changes and click <strong>Save &amp; Publish</strong>.', 'ok');
+    } catch(err) {
+      showStatus('✗ Failed to load: ' + err.message + '. Check your token and try again.', 'err');
+    }
+  }
+
+  /* ── Save ────────────────────────────────────────── */
+  async function saveConfig() {
+    var token = getToken();
+    if (!token) { showStatus('⚠️ Please enter your GitHub token first.', 'err'); return; }
+    if (!currentSha) { showStatus('⚠️ Please click <strong>📥 Load</strong> first to load the current config before saving.', 'err'); return; }
+    localStorage.setItem('ck-cms-token', token);
+    var btn = document.getElementById('btn-save');
+    btn.disabled = true;
+    showStatus('<span class="spinner"></span> Saving and publishing to Vercel…', 'loading');
+    try {
+      var config = collectFormData();
+      var content = b64Encode(JSON.stringify(config, null, 2));
+      var result = await ghPut('/repos/' + REPO_OWNER + '/' + REPO_NAME + '/contents/' + CONFIG_PATH, {
+        message: 'Update Category King factsheet content via CMS',
+        content: content,
+        sha: currentSha,
+        branch: REPO_BRANCH
+      });
+      currentSha = result.content.sha;
+      showStatus('🚀 <strong>Published!</strong> Vercel will redeploy in about 30 seconds. ' +
+        '<a href="' + LIVE_URL + '" target="_blank">View live site →</a>', 'ok');
+    } catch(err) {
+      showStatus('✗ Save failed: ' + err.message, 'err');
+    }
+    btn.disabled = false;
+  }
+
+  /* ── Populate forms ──────────────────────────────── */
+  function populateForms(c) {
+    var ev = c.event || {}, lk = c.links || {};
+
+    sv('ev-dates',      ev.dates);
+    sv('ev-days-zh',    ev.days_zh);
+    sv('ev-days-en',    ev.days_en);
+    sv('ev-time-reg',   ev.time_registration);
+    sv('ev-time-event', ev.time_event);
+    sv('ev-tagline-zh', ev.tagline_zh);
+    sv('ev-tagline-en', ev.tagline_en);
+    sv('ev-countdown',  ev.countdown_target);
+
+    sv('lk-hw1',     lk.hw1_onboarding);
+    sv('lk-hw3',     lk.hw3_pdf_guide);
+    sv('lk-join',    lk.join_group);
+    sv('lk-contact', lk.contact_us);
+
+    renderFaqList(c.faq || []);
+  }
+
+  function sv(id, val) { var el = document.getElementById(id); if (el && val != null) el.value = val; }
+  function gv(id) { var el = document.getElementById(id); return el ? el.value : ''; }
+
+  /* ── Collect forms ───────────────────────────────── */
+  function collectFormData() {
+    return {
+      event: {
+        dates:             gv('ev-dates'),
+        days_zh:           gv('ev-days-zh'),
+        days_en:           gv('ev-days-en'),
+        time_registration: gv('ev-time-reg'),
+        time_event:        gv('ev-time-event'),
+        tagline_zh:        gv('ev-tagline-zh'),
+        tagline_en:        gv('ev-tagline-en'),
+        countdown_target:  gv('ev-countdown')
+      },
+      links: {
+        hw1_onboarding: gv('lk-hw1'),
+        hw3_pdf_guide:  gv('lk-hw3'),
+        join_group:     gv('lk-join'),
+        contact_us:     gv('lk-contact')
+      },
+      faq: collectFaq()
+    };
+  }
+
+  /* ── Dynamic: FAQ ────────────────────────────────── */
+  function renderFaqList(items) {
+    var c = document.getElementById('faq-list');
+    c.innerHTML = '';
+    items.forEach(function(f, i) { c.appendChild(buildFaqCard(f, i)); });
+  }
+
+  function buildFaqCard(f, i) {
+    var d = document.createElement('div');
+    d.className = 'dyn-card';
+    d.innerHTML =
+      '<div class="dyn-card-head">' +
+        '<span class="dyn-card-label">Question ' + (i + 1) + '</span>' +
+        '<button class="btn-remove" onclick="removeFaq(this)">✕</button>' +
+      '</div>' +
+      '<div class="row2">' +
+        '<div class="field"><label>Question (Chinese)</label>' +
+          '<input type="text" class="faq-qzh" value="' + esc(f.question_zh||'') + '" placeholder="我可以...？"></div>' +
+        '<div class="field"><label>Question (English)</label>' +
+          '<input type="text" class="faq-qen" value="' + esc(f.question_en||'') + '" placeholder="Can I...?"></div>' +
+      '</div>' +
+      '<div class="row2">' +
+        '<div class="field"><label>Answer (Chinese — HTML supported)</label>' +
+          '<textarea class="faq-azh" rows="3">' + esc(f.answer_zh||'') + '</textarea></div>' +
+        '<div class="field"><label>Answer (English — HTML supported)</label>' +
+          '<textarea class="faq-aen" rows="3">' + esc(f.answer_en||'') + '</textarea></div>' +
+      '</div>';
+    return d;
+  }
+
+  function addFaq() {
+    var c = document.getElementById('faq-list');
+    c.appendChild(buildFaqCard({ question_zh:'', question_en:'', answer_zh:'', answer_en:'' }, c.children.length));
+    updateFaqLabels();
+  }
+
+  function removeFaq(btn) {
+    btn.closest('.dyn-card').remove();
+    updateFaqLabels();
+  }
+
+  function updateFaqLabels() {
+    document.querySelectorAll('#faq-list .dyn-card-label').forEach(function(el, i) {
+      el.textContent = 'Question ' + (i + 1);
+    });
+  }
+
+  function collectFaq() {
+    return Array.from(document.querySelectorAll('#faq-list .dyn-card')).map(function(d) {
+      return {
+        question_zh: d.querySelector('.faq-qzh').value,
+        question_en: d.querySelector('.faq-qen').value,
+        answer_zh:   d.querySelector('.faq-azh').value,
+        answer_en:   d.querySelector('.faq-aen').value
+      };
+    });
+  }
+
+  /* ── Util ────────────────────────────────────────── */
+  function esc(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+</script>
+</body>
+</html>

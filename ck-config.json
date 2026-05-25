@@ -1,0 +1,38 @@
+{
+  "event": {
+    "dates": "11 – 13 June 2026",
+    "days_zh": "星期三至星期五",
+    "days_en": "Wednesday to Friday",
+    "time_registration": "8:00 AM",
+    "time_event": "9:00 AM – 10:00 PM",
+    "tagline_zh": "以你的生活发展你的企业，而不是让你的生活迁就你的企业",
+    "tagline_en": "Grow your business around your life, not your life around your business",
+    "countdown_target": "2026-06-10T23:59:00+08:00"
+  },
+  "links": {
+    "hw1_onboarding": "https://categoryking.asia/ck-jun26-onboarding-form",
+    "hw3_pdf_guide": "https://drive.google.com/file/d/13oW-6gM6Cz6vjlVcpwpVPlL_Xcw2SvcD/view?usp=sharing",
+    "join_group": "https://chat.whatsapp.com/IZZ1y2iFUPe4RTyvFU2ncL",
+    "contact_us": "https://api.whatsapp.com/send/?phone=601154581419&text&type=phone_number&app_absent=0"
+  },
+  "faq": [
+    {
+      "question_zh": "我可以将票转让给他人吗？",
+      "question_en": "Can I transfer my ticket to someone else?",
+      "answer_zh": "可以。票务不可退款，但可以在同一公司内部转让。请在课程开始前 <strong>5 个工作日</strong>通知我们，以便更新出席者信息。",
+      "answer_en": "Yes. Tickets are non-refundable but transferable within the same company. Just inform us 5 working days before the workshop so we can update your attendee information."
+    },
+    {
+      "question_zh": "有提供翻译服务吗？",
+      "question_en": "Is there any translation service?",
+      "answer_zh": "本课程<strong>全程以中文授课</strong>，不提供翻译服务。",
+      "answer_en": "The workshop will be conducted entirely in Chinese, and no translation will be provided."
+    },
+    {
+      "question_zh": "本课程可申请 HRDC 补贴吗？",
+      "question_en": "Is the workshop HRDC Claimable?",
+      "answer_zh": "可以。《行业唯王》课程可通过 <strong>HRD Corp</strong> 培训计划进行补贴申请，具体以贵公司的资格及征收余额为准。",
+      "answer_en": "Yes. Category King is HRD Corp claimable under the HRD Corp training schemes, subject to your company's eligibility and levy balance."
+    }
+  ]
+}
