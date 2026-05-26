@@ -1,19 +1,98 @@
 {
-  "event": {
+  "header": {
+    "badge": "课程资料 · Event Factsheet",
+    "tagline_zh": "以你的生活发展你的企业，而不是让你的生活迁就你的企业",
+    "tagline_en": "Grow your business around your life, not your life around your business",
     "dates": "11 – 13 June 2026",
     "days_zh": "星期三至星期五",
     "days_en": "Wednesday to Friday",
-    "time_registration": "8:00 AM",
-    "time_event": "9:00 AM – 10:00 PM",
-    "tagline_zh": "以你的生活发展你的企业，而不是让你的生活迁就你的企业",
-    "tagline_en": "Grow your business around your life, not your life around your business",
+    "time": "9AM – 10PM",
+    "location": "Menara EcoWorld, KL",
     "countdown_target": "2026-06-10T23:59:00+08:00"
   },
-  "links": {
-    "hw1_onboarding": "https://categoryking.asia/ck-jun26-onboarding-form",
-    "hw3_pdf_guide": "https://drive.google.com/file/d/13oW-6gM6Cz6vjlVcpwpVPlL_Xcw2SvcD/view?usp=sharing",
-    "join_group": "https://chat.whatsapp.com/IZZ1y2iFUPe4RTyvFU2ncL",
-    "contact_us": "https://api.whatsapp.com/send/?phone=601154581419&text&type=phone_number&app_absent=0"
+  "event_details": {
+    "venue_name": "Vertex Mastery Sdn Bhd",
+    "venue_address": "39-07, Menara EcoWorld @ BBCC,<br>2, Jln Hang Tuah, Bukit Bintang,<br>55100 Kuala Lumpur",
+    "google_maps_url": "https://www.google.com/maps/search/?api=1&query=Vertex+Mastery+Sdn+Bhd+39-07+Menara+Ecoworld+BBCC+2+Jln+Hang+Tuah+Bukit+Bintang+55100+Kuala+Lumpur",
+    "waze_url": "https://waze.com/ul/hw283f7wb2",
+    "registration_time": "8:00 AM",
+    "event_time": "9:00 AM – 10:00 PM"
+  },
+  "venue_guide": {
+    "grab_dropoff": "Menara EcoWorld",
+    "parking": [
+      {
+        "name": "Lalaport BBCC",
+        "how_to_park_zh": "停在 <strong>Zone C (Blue Zone)</strong><br>柱号 <strong>C1 – C4</strong>",
+        "rates": [
+          { "zh": "首3小时", "en": "First 3 hours:", "value": "Free 免费" },
+          { "zh": "随后每小时", "en": "Subsequent hour:", "value": "RM 3" },
+          { "zh": "下午5时后", "en": "After 5:00 PM:", "value": "Free 免费" },
+          { "zh": "每日上限", "en": "Max per day:", "value": "RM 30" }
+        ],
+        "video_url": "https://drive.google.com/file/d/1qBIPrbqQzve_NeG4iKZavrkVCfLPh3DJ/view?usp=sharing",
+        "image": "Lalaport Parking Picture.jpeg"
+      },
+      {
+        "name": "The Labs @ BBCC",
+        "how_to_park_zh": "停在 <strong>B3</strong>，靠近 <strong>Lift A</strong>",
+        "rates": [
+          { "zh": "首小时", "en": "First hour:", "value": "RM 3" },
+          { "zh": "随后每小时", "en": "Subsequent hour:", "value": "RM 2" },
+          { "zh": "每日上限", "en": "Max per day:", "value": "RM 40" }
+        ],
+        "video_url": "https://drive.google.com/file/d/1oMJFtL8d2HX7w0G1q9xJnEQnNaeUMid6/view?usp=sharing",
+        "image": ""
+      }
+    ],
+    "lobby_zh": "请前往接待台进行登记。告知保安人员您将前往 <strong>Level 39, Unit 07</strong>。",
+    "lobby_en": "Head to the reception counter to register. Mention to the security guards that you are going up to <strong>Level 39, Unit 07</strong>.",
+    "lobby_photo": "Building Lobby Picture.jpg",
+    "lobby_caption_zh": "请于抵达后前往接待台登记",
+    "lobby_caption_en": "head to the reception counter upon arrival"
+  },
+  "preparation": {
+    "items": [
+      { "emoji": "💧", "zh": "有盖水瓶", "en": "Water Bottle with Lid" },
+      { "emoji": "📓", "zh": "笔记本与笔", "en": "Notebook with Pen" },
+      { "emoji": "🔋", "zh": "充电宝或充电器", "en": "Power Bank or Charger" },
+      { "emoji": "🧥", "zh": "外套 <em>（强烈建议携带！室内较冷）</em>", "en": "Jacket <em>(Highly recommended! The room will be cold.)</em>" },
+      { "emoji": "🪪", "zh": "名片（与同学交流用）", "en": "Name Cards to exchange with your fellow classmates" }
+    ],
+    "homework": [
+      {
+        "icon": "1️⃣",
+        "zh": "填写入学表格 — 请点击此处填写",
+        "en": "Fill in the onboarding form HERE",
+        "link": "https://categoryking.asia/ck-jun26-onboarding-form"
+      },
+      {
+        "icon": "2️⃣",
+        "zh": "调查并列出您所在行业中 5–10 个直接或间接竞争对手。",
+        "en": "Research and list 5–10 direct or indirect competitors in your industry.",
+        "link": ""
+      },
+      {
+        "icon": "3️⃣",
+        "zh": "完成《行业唯王》课前训练模块（详细登录步骤请参阅 PDF 指南此处）。",
+        "en": "Complete the Category King Pre-Training Module (refer to the PDF for the step-by-step login guide HERE).",
+        "link": "https://drive.google.com/file/d/13oW-6gM6Cz6vjlVcpwpVPlL_Xcw2SvcD/view?usp=sharing"
+      },
+      {
+        "icon": "4️⃣",
+        "zh": "准备 10 张 RM1 现金（课堂活动用）",
+        "en": "Bring 10 × RM1 (for learning activities)",
+        "link": ""
+      },
+      {
+        "icon": "5️⃣",
+        "zh": "准备 1 张 RM50 现金（课堂活动用）",
+        "en": "Bring 1 × RM50 (for learning activities)",
+        "link": ""
+      }
+    ],
+    "dress_code_zh": "请携带外套，会议室较冷。",
+    "dress_code_en": "Bring a jacket along as the room will be cold."
   },
   "faq": [
     {
@@ -34,5 +113,13 @@
       "answer_zh": "可以。《行业唯王》课程可通过 <strong>HRD Corp</strong> 培训计划进行补贴申请，具体以贵公司的资格及征收余额为准。",
       "answer_en": "Yes. Category King is HRD Corp claimable under the HRD Corp training schemes, subject to your company's eligibility and levy balance."
     }
-  ]
+  ],
+  "links": {
+    "join_group": "https://chat.whatsapp.com/IZZ1y2iFUPe4RTyvFU2ncL",
+    "contact_us": "https://api.whatsapp.com/send/?phone=601154581419&text&type=phone_number&app_absent=0"
+  },
+  "footer": {
+    "company": "Vertex Mastery Sdn Bhd",
+    "copyright": "Copyright 2025. All Rights Reserved, Vertex Mastery Sdn Bhd."
+  }
 }
