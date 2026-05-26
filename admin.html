@@ -87,6 +87,7 @@
     .field input:focus, .field textarea:focus { border-color: #fadd82; background: #fff; box-shadow: 0 0 0 3px rgba(250,221,130,.2); }
     .field textarea { resize: vertical; min-height: 72px; }
     .field .hint { font-size: .69rem; color: #9aaace; margin-top: 5px; line-height: 1.5; }
+    .field .hint code { background: #eef2fb; border-radius: 4px; padding: 1px 5px; font-size: .72rem; color: #1a2a49; }
 
     .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
     .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
@@ -267,6 +268,76 @@
     </div>
   </div>
 
+  <!-- ── 1b. Formatting Guide ── -->
+  <div class="cms-section">
+    <h2>✏️ Formatting Guide <span style="font-size:.75rem;font-weight:400;color:#9aaace;">— for fields labelled "HTML supported"</span></h2>
+    <p style="font-size:.8rem;color:#4a5a8a;margin-bottom:16px;line-height:1.7;">
+      Some text fields let you use simple codes to style your text. Copy and paste the examples below — no coding knowledge needed.
+    </p>
+
+    <div style="display:grid;gap:10px;">
+
+      <!-- br -->
+      <div class="info-box" style="margin-bottom:0;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="background:#1a2a49;color:#fadd82;font-family:monospace;font-size:.85rem;font-weight:700;padding:6px 14px;border-radius:8px;white-space:nowrap;flex-shrink:0;">&lt;br&gt;</div>
+          <div>
+            <div style="font-weight:700;color:#1a2a49;font-size:.82rem;margin-bottom:4px;">New Line / Line Break</div>
+            <div style="font-size:.78rem;color:#4a5a8a;line-height:1.7;">
+              Starts a new line (like pressing Enter on a keyboard). Use it when you want text to continue on the line below instead of running on in one long paragraph.<br>
+              <strong>Example:</strong><br>
+              You type: &nbsp;<code style="background:#f0f4fb;padding:2px 6px;border-radius:4px;font-size:.78rem;">39-07, Menara EcoWorld,&lt;br&gt;2, Jln Hang Tuah</code><br>
+              It shows as:<br>
+              <span style="display:inline-block;margin-top:4px;padding:6px 10px;background:#fff;border:1.5px solid #dce6f7;border-radius:6px;font-size:.78rem;line-height:1.8;">39-07, Menara EcoWorld,<br>2, Jln Hang Tuah</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- strong -->
+      <div class="info-box" style="margin-bottom:0;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="background:#1a2a49;color:#fadd82;font-family:monospace;font-size:.85rem;font-weight:700;padding:6px 14px;border-radius:8px;white-space:nowrap;flex-shrink:0;">&lt;strong&gt;&lt;/strong&gt;</div>
+          <div>
+            <div style="font-weight:700;color:#1a2a49;font-size:.82rem;margin-bottom:4px;">Bold / Make it stand out</div>
+            <div style="font-size:.78rem;color:#4a5a8a;line-height:1.7;">
+              Makes the text inside <strong>bold and heavy</strong>. Wrap the word(s) you want to highlight between <code style="background:#f0f4fb;padding:2px 6px;border-radius:4px;font-size:.78rem;">&lt;strong&gt;</code> and <code style="background:#f0f4fb;padding:2px 6px;border-radius:4px;font-size:.78rem;">&lt;/strong&gt;</code> — don't forget the closing tag (the one with the slash).<br>
+              <strong>Example:</strong><br>
+              You type: &nbsp;<code style="background:#f0f4fb;padding:2px 6px;border-radius:4px;font-size:.78rem;">前往 &lt;strong&gt;Level 39, Unit 07&lt;/strong&gt; 登记</code><br>
+              It shows as: &nbsp;<span style="font-size:.78rem;">前往 <strong>Level 39, Unit 07</strong> 登记</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- em -->
+      <div class="info-box" style="margin-bottom:0;">
+        <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+          <div style="background:#1a2a49;color:#fadd82;font-family:monospace;font-size:.85rem;font-weight:700;padding:6px 14px;border-radius:8px;white-space:nowrap;flex-shrink:0;">&lt;em&gt;&lt;/em&gt;</div>
+          <div>
+            <div style="font-weight:700;color:#1a2a49;font-size:.82rem;margin-bottom:4px;">Italic / Softer emphasis</div>
+            <div style="font-size:.78rem;color:#4a5a8a;line-height:1.7;">
+              Makes the text inside <em>lean to the right (italic)</em>. Good for side notes, English translations, or anything you want to appear a little softer. Wrap text between <code style="background:#f0f4fb;padding:2px 6px;border-radius:4px;font-size:.78rem;">&lt;em&gt;</code> and <code style="background:#f0f4fb;padding:2px 6px;border-radius:4px;font-size:.78rem;">&lt;/em&gt;</code>.<br>
+              <strong>Example:</strong><br>
+              You type: &nbsp;<code style="background:#f0f4fb;padding:2px 6px;border-radius:4px;font-size:.78rem;">是的，可以。&lt;em&gt;Yes, you may.&lt;/em&gt;</code><br>
+              It shows as: &nbsp;<span style="font-size:.78rem;">是的，可以。<em>Yes, you may.</em></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- combined tip -->
+      <div class="note-box" style="margin-top:4px;">
+        <strong>💡 You can mix them together!</strong><br>
+        <code style="font-size:.78rem;background:rgba(255,255,255,.6);padding:2px 6px;border-radius:4px;">注意事项：&lt;br&gt;&lt;strong&gt;请准时出席&lt;/strong&gt; — &lt;em&gt;Please arrive on time.&lt;/em&gt;</code><br>
+        <span style="display:inline-block;margin-top:6px;padding:7px 12px;background:#fff;border:1.5px solid #f0d87a;border-radius:6px;font-size:.78rem;line-height:1.8;">
+          注意事项：<br><strong>请准时出席</strong> — <em>Please arrive on time.</em>
+        </span>
+      </div>
+
+    </div>
+  </div>
+
   <!-- ── 2. Event Header ── -->
   <div class="cms-section">
     <h2>🎨 Event Header</h2>
@@ -321,8 +392,9 @@
       <input type="text" id="d-venue-name" placeholder="Vertex Mastery Sdn Bhd">
     </div>
     <div class="field">
-      <label>Venue Address (HTML supported — use &lt;br&gt; for line breaks)</label>
+      <label>Venue Address (HTML supported)</label>
       <textarea id="d-venue-addr" rows="3" placeholder="39-07, Menara EcoWorld @ BBCC,&lt;br&gt;2, Jln Hang Tuah, Bukit Bintang,&lt;br&gt;55100 Kuala Lumpur"></textarea>
+      <div class="hint">Use <code>&lt;br&gt;</code> to break into a new line. See the Formatting Guide above for more codes.</div>
     </div>
     <div class="field">
       <label>Google Maps URL</label>
@@ -363,10 +435,12 @@
     <div class="field">
       <label>Lobby Instruction — Chinese (HTML supported)</label>
       <textarea id="v-lobby-zh" rows="3" placeholder="请前往接待台进行登记。告知保安人员您将前往 &lt;strong&gt;Level 39, Unit 07&lt;/strong&gt;。"></textarea>
+      <div class="hint">Use <code>&lt;br&gt;</code> for new lines, <code>&lt;strong&gt;word&lt;/strong&gt;</code> for bold, <code>&lt;em&gt;word&lt;/em&gt;</code> for italic. See Formatting Guide above.</div>
     </div>
     <div class="field">
       <label>Lobby Instruction — English (HTML supported)</label>
       <textarea id="v-lobby-en" rows="3" placeholder="Head to the reception counter to register…"></textarea>
+      <div class="hint">Use <code>&lt;br&gt;</code> for new lines, <code>&lt;strong&gt;word&lt;/strong&gt;</code> for bold, <code>&lt;em&gt;word&lt;/em&gt;</code> for italic. See Formatting Guide above.</div>
     </div>
     <div class="row2">
       <div class="field">
@@ -732,7 +806,8 @@
       '<div class="field"><label>Parking Name</label>' +
         '<input type="text" class="p-name" value="' + esc(p.name || '') + '" placeholder="e.g. Lalaport BBCC"></div>' +
       '<div class="field"><label>How to Park — Chinese (HTML supported)</label>' +
-        '<textarea class="p-how-zh" rows="2">' + esc(p.how_to_park_zh || '') + '</textarea></div>' +
+        '<textarea class="p-how-zh" rows="2">' + esc(p.how_to_park_zh || '') + '</textarea>' +
+        '<div class="hint">Use <code>&lt;br&gt;</code> for new lines, <code>&lt;strong&gt;word&lt;/strong&gt;</code> for bold. See Formatting Guide at top of page.</div></div>' +
       '<div class="field"><label>Parking Image Filename</label>' +
         '<input type="text" class="p-image" value="' + esc(p.image || '') + '" placeholder="Lalaport Parking Picture.jpeg">' +
         '<p class="hint">Filename only (e.g. "Lalaport Parking Picture.jpeg"). Leave blank if no image.</p></div>' +
@@ -918,9 +993,11 @@
           '<input type="text" class="fq-en" value="' + esc(f.question_en || '') + '" placeholder="Can I transfer my ticket?"></div>' +
       '</div>' +
       '<div class="field"><label>Answer — Chinese (HTML supported)</label>' +
-        '<textarea class="fa-zh" rows="3">' + esc(f.answer_zh || '') + '</textarea></div>' +
+        '<textarea class="fa-zh" rows="3">' + esc(f.answer_zh || '') + '</textarea>' +
+        '<div class="hint">Use <code>&lt;br&gt;</code> for new line · <code>&lt;strong&gt;word&lt;/strong&gt;</code> for <strong>bold</strong> · <code>&lt;em&gt;word&lt;/em&gt;</code> for <em>italic</em>. See Formatting Guide at top.</div></div>' +
       '<div class="field" style="margin-bottom:0;"><label>Answer — English (HTML supported)</label>' +
-        '<textarea class="fa-en" rows="3">' + esc(f.answer_en || '') + '</textarea></div>';
+        '<textarea class="fa-en" rows="3">' + esc(f.answer_en || '') + '</textarea>' +
+        '<div class="hint">Use <code>&lt;br&gt;</code> for new line · <code>&lt;strong&gt;word&lt;/strong&gt;</code> for <strong>bold</strong> · <code>&lt;em&gt;word&lt;/em&gt;</code> for <em>italic</em>. See Formatting Guide at top.</div></div>';
     return d;
   }
 
