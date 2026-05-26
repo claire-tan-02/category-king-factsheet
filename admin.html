@@ -474,9 +474,21 @@
   /* ════════════════════════════════════════════════════
      INIT
   ════════════════════════════════════════════════════ */
-  window.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener('DOMContentLoaded', async function() {
     var saved = localStorage.getItem(TOKEN_KEY);
     if (saved) document.getElementById('gh-token').value = saved;
+
+    /* Auto-load existing config from live URL so all items show up immediately */
+    try {
+      var res = await fetch(LIVE_URL + '/' + CONFIG_PATH + '?t=' + Date.now());
+      if (res.ok) {
+        var config = await res.json();
+        populateForms(config);
+        return;
+      }
+    } catch(e) { /* fall through to empty lists */ }
+
+    /* Fallback: render empty lists if live config unavailable */
     renderParkingList([]);
     renderItemsList([]);
     renderHwList([]);
